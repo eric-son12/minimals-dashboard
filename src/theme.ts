@@ -13,7 +13,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Public Sans Variable, -apple-system, BlinkMacSystemFont, Roboto',
+    fontFamily: 'Public Sans, -apple-system, BlinkMacSystemFont, Roboto',
     h1: {
       fontSize: '3rem',
       fontWeight: 700,
@@ -248,6 +248,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontSize: '20px',
+          fontWeight: 700,
+        },
+      },
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          padding: '24px',
+        },
+      },
+    },
     MuiFormLabel: {
       styleOverrides: {
         root: {
@@ -274,8 +289,8 @@ const theme = createTheme({
             borderColor: 'var(--palette-text-primary) !important',
           },
           '.MuiInputBase-root': {
-            fontSize: '14px'
-          }
+            fontSize: '14px',
+          },
         },
       },
     },

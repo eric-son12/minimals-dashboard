@@ -10,11 +10,11 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import { pencilIcon, trashIcon } from '../../shared/icon/icon';
-import CreateProductDialog from './create/CreateProduct';
-
 import { useNavigate } from 'react-router-dom';
+
+import { pencilIcon, trashIcon } from '../../shared/icon/icon';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import CreateProductDialog from './create/CreateProduct';
 
 const Product: React.FC = () => {
   const navigate = useNavigate();
