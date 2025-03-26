@@ -10,8 +10,10 @@ import Product from './components/product/Product';
 import User from './components/user/User';
 import Order from './components/order/Order';
 import Invoice from './components/invoice/Invoice';
-import CreateProduct from './components/product/create/CreateProduct';
 import ProductDetail from './components/product/detail/ProductDetail';
+import Supplier from './components/supplier/Supplier';
+import Category from './components/category/Category';
+import Variant from './components/variant/Variant';
 
 import './App.css';
 
@@ -26,12 +28,14 @@ const App: React.FC = () => {
             <Route path='/dashboard'>
               <Route index element={<Navigate to='overview' />} />
               <Route path='overview' element={<Overview />} />
-              <Route path='product' element={<Product />} />
-              <Route path='product/create' element={<CreateProduct />} />
+              <Route path='product/list' element={<Product />} />
+              <Route path='product/category' element={<Category />} />
+              <Route path='product/variant' element={<Variant />} />
               <Route path='product/detail' element={<ProductDetail />} />
               <Route path='user' element={<User />} />
               <Route path='order' element={<Order />} />
               <Route path='invoice' element={<Invoice />} />
+              <Route path='supplier' element={<Supplier />} />
               <Route
                 path='analytics'
                 element={

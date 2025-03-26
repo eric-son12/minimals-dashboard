@@ -1,11 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { List, ListItemText, Toolbar, ListItemButton, ListSubheader } from '@mui/material';
+import {
+  List,
+  ListItemText,
+  Toolbar,
+  ListItemButton,
+  ListSubheader,
+  Collapse,
+} from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 import { MENU_ITEMS } from './menu';
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -35,42 +48,127 @@ const Sidebar: React.FC = () => {
             </ListSubheader>
           }
         >
-          {list.items.map((item, index) => (
-            <ListItemButton
-              sx={{ mb: 0.5, px: 1.5, py: 0.5, gap: 1.5, borderRadius: 2 }}
-              key={index}
-              onClick={() => navigate(`/dashboard/${item.pathName}`)}
-            >
-              <img
-                style={{ width: 24, height: 24, filter: 'grayscale(1)' }}
-                src={item.icon}
-                alt=''
-              />
-              <ListItemText
-                sx={{
-                  color: 'var(--palette-grey-600)',
-                  fontSize: '0.875rem',
-                  pt: '3px',
-                  pb: '3px',
-                  fontWeight: 500,
-                }}
-                primary={item.text}
-                slots={{
-                  primary: (ownerState) => (
-                    <span
-                      style={{
-                        color: ownerState.selected
-                          ? 'var(--palette-text-primary)'
-                          : 'var(--palette-grey-600)',
+          {list.items.map((item, index) => {
+            if (item.pathName === 'product') {
+              return (
+                <React.Fragment key={index}>
+                  <ListItemButton
+                    sx={{ mb: 0.5, px: 1.5, py: 0.5, gap: 1.5, borderRadius: 2 }}
+                    onClick={handleClick}
+                  >
+                    <img
+                      style={{ width: 24, height: 24, filter: 'grayscale(1)' }}
+                      src={item.icon}
+                      alt=''
+                    />
+                    <ListItemText
+                      sx={{
+                        color: 'var(--palette-grey-600)',
+                        fontSize: '0.875rem',
+                        pt: '3px',
+                        pb: '3px',
+                        fontWeight: 500,
                       }}
-                    >
-                      {item.text}
-                    </span>
-                  ),
-                }}
-              />
-            </ListItemButton>
-          ))}
+                      primary={item.text}
+                      slots={{
+                        primary: (ownerState) => (
+                          <span
+                            style={{
+                              color: ownerState.selected
+                                ? 'var(--palette-text-primary)'
+                                : 'var(--palette-grey-600)',
+                            }}
+                          >
+                            {item.text}
+                          </span>
+                        ),
+                      }}
+                    />
+                    {open ? (
+                      <ExpandLess sx={{ fontSize: '16px', color: 'var(--palette-grey-600)' }} />
+                    ) : (
+                      <ExpandMore sx={{ fontSize: '16px', color: 'var(--palette-grey-600)' }} />
+                    )}
+                  </ListItemButton>
+                  <Collapse in={open} timeout='auto' unmountOnExit>
+                    <List component='div' disablePadding>
+                      {item.child &&
+                        item.child.map((child, index) => (
+                          <ListItemButton
+                            key={index}
+                            sx={{ mb: 0.5, px: 1.5, pl: 3, py: 0.5, gap: 1.5, borderRadius: 2 }}
+                            onClick={() =>
+                              navigate(`/dashboard/${item.pathName}/${child.pathName}`)
+                            }
+                          >
+                            <ListItemText
+                              sx={{
+                                color: 'var(--palette-grey-600)',
+                                fontSize: '0.8rem',
+                                pt: '3px',
+                                pb: '3px',
+                                fontWeight: 500,
+                              }}
+                              primary={child.text}
+                              slots={{
+                                primary: (ownerState) => (
+                                  <span
+                                    style={{
+                                      color: ownerState.selected
+                                        ? 'var(--palette-text-primary)'
+                                        : 'var(--palette-grey-600)',
+                                    }}
+                                  >
+                                    {child.text}
+                                  </span>
+                                ),
+                              }}
+                            />
+                          </ListItemButton>
+                        ))}
+                    </List>
+                  </Collapse>
+                </React.Fragment>
+              );
+            } else {
+              return (
+                <ListItemButton
+                  sx={{ mb: 0.5, px: 1.5, py: 0.5, gap: 1.5, borderRadius: 2 }}
+                  key={index}
+                  onClick={() => navigate(`/dashboard/${item.pathName}`)}
+                >
+                  <img
+                    style={{ width: 24, height: 24, filter: 'grayscale(1)' }}
+                    src={item.icon}
+                    alt=''
+                  />
+                  <ListItemText
+                    sx={{
+                      color: 'var(--palette-grey-600)',
+                      fontSize: '0.875rem',
+                      pt: '3px',
+                      pb: '3px',
+                      fontWeight: 500,
+                    }}
+                    primary={item.text}
+                    slots={{
+                      primary: (ownerState) => (
+                        <span
+                          style={{
+                            color: ownerState.selected
+                              ? 'var(--palette-text-primary)'
+                              : 'var(--palette-grey-600)',
+                          }}
+                        >
+                          {item.text}
+                        </span>
+                      ),
+                    }}
+                  />
+                </ListItemButton>
+              );
+            }
+          })}
         </List>
       ))}
     </>
