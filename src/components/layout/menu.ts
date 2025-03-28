@@ -2,10 +2,12 @@ import {
   analyticsIcon,
   dashboardIcon,
   ecommerceIcon,
+  inventoryIcon,
   invoiceIcon,
   locationIcon,
   orderIcon,
   productIcon,
+  purchaseOrderIcon,
   supplierIcon,
   userIcon,
 } from '../../shared/icon/icon';
@@ -18,7 +20,15 @@ export const MENU_ITEMS = [
   {
     title: 'Management',
     items: [
-      { pathName: 'user', text: 'User', icon: userIcon },
+      {
+        pathName: 'user',
+        text: 'User',
+        icon: userIcon,
+        child: [
+          { pathName: 'list', text: 'List', icon: userIcon },
+          { pathName: 'role', text: 'Role', icon: userIcon },
+        ],
+      },
       {
         pathName: 'product',
         text: 'Product',
@@ -44,9 +54,38 @@ export const MENU_ITEMS = [
       { pathName: 'order', text: 'Order', icon: orderIcon },
       { pathName: 'invoice', text: 'Invoice', icon: invoiceIcon },
       {
-        pathName: 'location',
-        text: 'Location',
-        icon: locationIcon,
+        pathName: 'purchase-order',
+        text: 'Purchase Order',
+        icon: purchaseOrderIcon,
+        child: [
+          {
+            pathName: 'list',
+            text: 'List',
+            icon: purchaseOrderIcon,
+          },
+          {
+            pathName: 'request',
+            text: 'Request',
+            icon: purchaseOrderIcon,
+          },
+        ],
+      },
+      {
+        pathName: 'inventory',
+        text: 'Inventory',
+        icon: inventoryIcon,
+        child: [
+          {
+            pathName: 'list',
+            text: 'List',
+            icon: inventoryIcon,
+          },
+          {
+            pathName: 'location',
+            text: 'Location',
+            icon: locationIcon,
+          },
+        ],
       },
       { pathName: 'supplier', text: 'Supplier', icon: ecommerceIcon },
       {

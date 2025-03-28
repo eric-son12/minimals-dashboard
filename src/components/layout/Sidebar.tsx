@@ -14,10 +14,12 @@ import { MENU_ITEMS } from './menu';
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState<boolean[]>(Array(MENU_ITEMS.length).fill(true));
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleClick = (index: number) => {
+    const newOpen = [...open];
+    newOpen[index] = !newOpen[index];
+    setOpen(newOpen);
   };
 
   return (
@@ -49,12 +51,12 @@ const Sidebar: React.FC = () => {
           }
         >
           {list.items.map((item, index) => {
-            if (item.pathName === 'product') {
+            if (item.child) {
               return (
                 <React.Fragment key={index}>
                   <ListItemButton
                     sx={{ mb: 0.5, px: 1.5, py: 0.5, gap: 1.5, borderRadius: 2 }}
-                    onClick={handleClick}
+                    onClick={() => handleClick(index)}
                   >
                     <img
                       style={{ width: 24, height: 24, filter: 'grayscale(1)' }}
@@ -84,13 +86,13 @@ const Sidebar: React.FC = () => {
                         ),
                       }}
                     />
-                    {open ? (
+                    {open[index] ? (
                       <ExpandLess sx={{ fontSize: '16px', color: 'var(--palette-grey-600)' }} />
                     ) : (
                       <ExpandMore sx={{ fontSize: '16px', color: 'var(--palette-grey-600)' }} />
                     )}
                   </ListItemButton>
-                  <Collapse in={open} timeout='auto' unmountOnExit>
+                  <Collapse in={open[index]} timeout='auto'>
                     <List component='div' disablePadding>
                       {item.child &&
                         item.child.map((child, index) => (

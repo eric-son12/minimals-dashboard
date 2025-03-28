@@ -18,6 +18,8 @@ import locationIcon from '../../assets/icons/ic-location.svg';
 import supplierIcon from '../../assets/icons/ic-supplier.svg';
 import uploadIcon from '../../assets/icons/ic-upload.svg';
 import uploadImageIcon from '../../assets/icons/upload-image.svg';
+import inventoryIcon from '../../assets/icons/ic-inventory.svg';
+import purchaseOrderIcon from '../../assets/icons/ic-purchase-order.svg';
 
 export {
   analyticsIcon,
@@ -40,4 +42,6 @@ export {
   supplierIcon,
   uploadIcon,
   uploadImageIcon,
+  inventoryIcon,
+  purchaseOrderIcon,
 };

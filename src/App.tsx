@@ -14,6 +14,12 @@ import ProductDetail from './components/product/detail/ProductDetail';
 import Supplier from './components/supplier/Supplier';
 import Category from './components/category/Category';
 import Variant from './components/variant/Variant';
+import Location from './components/location/Location';
+import Inventory from './components/inventory/Inventory';
+import RequestPurchaseOrder from './components/request-purchase-order/RequestPurchaseOrder';
+import PurchaseOrder from './components/purchase-order/PurchaseOrder';
+import Role from './components/role/Role';
+import Customer from './components/customer/Customer';
 
 import './App.css';
 
@@ -33,9 +39,16 @@ const App: React.FC = () => {
               <Route path='product/variant' element={<Variant />} />
               <Route path='product/detail' element={<ProductDetail />} />
               <Route path='user' element={<User />} />
+              <Route path='user/list' element={<User />} />
+              <Route path='user/role' element={<Role />} />
               <Route path='order' element={<Order />} />
               <Route path='invoice' element={<Invoice />} />
               <Route path='supplier' element={<Supplier />} />
+              <Route path='customer' element={<Customer />} />
+              <Route path='purchase-order/list' element={<PurchaseOrder />} />
+              <Route path='purchase-order/request' element={<RequestPurchaseOrder />} />
+              <Route path='inventory/list' element={<Inventory />} />
+              <Route path='inventory/location' element={<Location />} />
               <Route
                 path='analytics'
                 element={
